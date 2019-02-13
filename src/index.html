@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href="styles/style.css" rel="stylesheet" type="text/css">
+	<title>Tabby</title>
+</head>
+<body>
+<div id="background-overlay"></div>
+<div id="image-background-overlay"></div>
+<div id="thumbnail-background-overlay"></div>
+
+<div id="time-and-date">
+	<p id="time"></p>
+	<p id="date"></p>
+</div>
+
+<div id="link"></div>
+
+<div class="hidden" id="dialog-overlay"></div>
+<div class="hidden" id="dialog">
+	<h1>Welcome to Tabby</h1>
+	<p>
+		Tabby is a minimalistic new tab page with a refreshing wallpaper every minute.
+		In order to work properly, we need to set up some things:
+		a collection which will be used to get images from and an API key to request them
+	</p>
+
+	<label for="collection-id">Unsplash collection ID</label>
+	<input id="collection-id" placeholder="Collection ID" spellcheck="false" type="text">
+	<label for="api-key">Unsplash API key</label>
+	<input id="api-key" placeholder="API key" spellcheck="false" type="text">
+
+	<div id="actions">
+		<button class="button" id="get-started">
+			Get Started
+		</button>
+	</div>
+</div>
+
+<script src="scripts/index.js"></script>
+</body>
+</html>
