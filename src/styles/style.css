@@ -126,21 +126,21 @@ p {
 	flex-direction: column;
 }
 
-#dialog > h1 {
+#dialog h1 {
 	margin: 0 0 12px 0;
 	font-size: 24px;
 	font-weight: 500;
 	color: #404040;
 }
 
-#dialog > p {
+#dialog p {
 	color: #666666;
 	font-weight: 400;
 	font-size: 15px;
 	margin-bottom: 24px;
 }
 
-#dialog > input {
+#dialog input {
 	border-radius: 4px;
 	display: block;
 	width: 100%;
@@ -152,20 +152,21 @@ p {
 	border: 2px solid #DADADA;
 }
 
-#dialog > input::placeholder {
+#dialog input::placeholder {
 	color: #AFAFAF;
 }
 
-#dialog > input:active, #dialog > input:focus {
+#dialog input:active, #dialog input:focus {
 	border: 2px solid #4762E6;
 	-webkit-transition: 0.25s border;
 	-moz-transition: 0.25s border;
 	transition: 0.25s border;
 }
 
-#dialog > label {
+#dialog label {
 	font-size: 15px;
 	margin-bottom: 8px;
+	display: block;
 }
 
 #actions {
@@ -190,6 +191,16 @@ p {
 #actions > .button {
 	padding: 12px;
 	width: 100%;
+}
+
+#saved {
+	margin-top: 48px;
+	text-align: center;
+}
+
+#saved > p {
+	margin-top: 8px;
+	font-size: 20px;
 }
 
 @media (max-width: 1920px) {
