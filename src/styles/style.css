@@ -140,6 +140,12 @@ p {
 	margin-bottom: 24px;
 }
 
+#dialog p a {
+	color: #4762E6;
+	text-decoration: none;
+	font-weight: 500;
+}
+
 #dialog input {
 	border-radius: 4px;
 	display: block;
