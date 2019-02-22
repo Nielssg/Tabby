@@ -72,6 +72,9 @@ p {
 	top: 50%;
 	left: 50%;
 	text-align: center;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
 	transform: translate(-50%, -50%);
 }
 

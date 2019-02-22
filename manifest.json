@@ -1,6 +1,6 @@
 {
 	"name": "Tabby",
-	"description": "Tabby by Niels G & Remy B",
+	"description": "Tabby is a minimalistic new tab page packed with time, date and a refreshing new wallpaper every minute.",
 	"version": "1.0",
 	"options_page": "src/options.html",
 	"manifest_version": 2,
