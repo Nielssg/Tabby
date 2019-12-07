@@ -3,18 +3,8 @@
 </p>
 
 ## Showcase
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        <img src="images/Tabby.jpg" height="450" alt="New tab page">
-      </td>
-      <td align="center" valign="middle">
-        <img src="images/Options.jpg" height="450" alt="Options page">
-      </td>
-    </tr>
-  </tbody>
-</table>
+<img src="images/Tabby.jpg" alt="New tab page">
+<img src="images/Options.jpg" alt="Options page">
 
 ## How to use?
 Just download this repository, save it on a secure place and add it to your extensions using the "unpack extension" option. It will be added to the Chrome Web Store in the near future.
