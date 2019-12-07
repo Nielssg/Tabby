@@ -6,10 +6,14 @@
 <img src="images/Tabby.jpg" alt="New tab page">
 <img src="images/Options.jpg" alt="Options page">
 
-## How to use?
+
+## How to download & use?
 Just download this repository, save it on a secure place and add it to your extensions using the "unpack extension" option. It will be added to the Chrome Web Store in the near future.
 
-In order to get wallpapers, you need register as a developer on [Unsplash Developer Portal](https://unsplash.com/developers).
+In order to get wallpapers, you need register as a developer on [Unsplash Developer Portal](https://unsplash.com/developers) > "Register as a developer" > "New Application", accept all checkboxes > Give the application a name and description > Scroll down and copy the "Access Key", paste this in the options page.
+
+#### Download on [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabby/jkamfiammgahipdnjjdphkjblmlpjdch)
+#### Download on [Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/tabby-tab/)
 
 
 ## Features
@@ -17,9 +21,6 @@ In order to get wallpapers, you need register as a developer on [Unsplash Develo
 * See the current time
 * See the current date
 
-## Stores
-#### Download on [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabby/jkamfiammgahipdnjjdphkjblmlpjdch)
-#### Download on [Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/tabby-tab/)
 
 ## License
 [MIT](LICENSE)
