@@ -9,7 +9,10 @@
 	},
 	"manifest_version": 2,
 	"icons": {
-		"512": "src/images/tabby.png"
+		"96": "src/images/tabby-96.png",
+		"128": "src/images/tabby-128.png",
+		"256": "src/images/tabby-256.png",
+		"512": "src/images/tabby-512.png"
 	},
 	"chrome_url_overrides": {
 		"newtab": "src/index.html"
