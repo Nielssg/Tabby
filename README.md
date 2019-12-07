@@ -19,7 +19,7 @@ In order to get wallpapers, you need register as a developer on [Unsplash Develo
 
 ## Stores
 #### Download on [Google Chrome Webstore](https://chrome.google.com/webstore/detail/tabby/jkamfiammgahipdnjjdphkjblmlpjdch)
-#### Download on[Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/tabby-tab/)
+#### Download on [Firefox Add-Ons](https://addons.mozilla.org/en-US/firefox/addon/tabby-tab/)
 
 ## License
 [MIT](LICENSE)
