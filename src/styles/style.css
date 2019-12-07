@@ -10,8 +10,10 @@
 	font-weight: 400;
 }
 
-* {
-	font-family: 'Open Sans', sans-serif !important;
+a {
+	color: #4762E6;
+	text-decoration: none;
+	font-weight: 500;
 }
 
 body, html {
@@ -19,6 +21,7 @@ body, html {
 	padding: 0;
 	background: no-repeat fixed center;
 	background-size: cover;
+	font-family: 'Open Sans', sans-serif !important;
 }
 
 body {
@@ -141,12 +144,6 @@ p {
 	font-weight: 400;
 	font-size: 15px;
 	margin-bottom: 24px;
-}
-
-#dialog p a {
-	color: #4762E6;
-	text-decoration: none;
-	font-weight: 500;
 }
 
 #dialog input {

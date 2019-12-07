@@ -1,1 +1,4 @@
 .idea/
+*.xpi
+web-ext-artifacts
+.web-extension-id
