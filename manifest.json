@@ -1,18 +1,27 @@
 {
 	"name": "Tabby",
 	"description": "Tabby is a minimalistic new tab page packed with time, date and a refreshing new wallpaper every minute.",
-	"version": "1.1",
+	"version": "1.1.3",
 	"options_ui": {
 		"page": "src/options.html",
-		"chrome_style": false,
 		"open_in_tab": true
 	},
 	"manifest_version": 2,
 	"icons": {
+		"16": "src/images/tabby-16.png",
+		"32": "src/images/tabby-32.png",
+		"64": "src/images/tabby-64.png",
 		"96": "src/images/tabby-96.png",
 		"128": "src/images/tabby-128.png",
 		"256": "src/images/tabby-256.png",
 		"512": "src/images/tabby-512.png"
+	},
+	"browser_action": {
+		"default_icon": "src/images/tabby.png",
+		"default_title": "Tabby"
+	},
+	"background": {
+	  "scripts": ["background.js"]
 	},
 	"chrome_url_overrides": {
 		"newtab": "src/index.html"
