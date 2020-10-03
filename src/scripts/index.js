@@ -76,6 +76,15 @@ function applyWallpaper(image, link, thumbnail) {
 	byId("link").addEventListener("click", () => go(link));
 	byId("thumbnail-background-overlay").style.backgroundImage = `url(${thumbnail})`;
 	byId("image-background-overlay").style.backgroundImage = `url(${image})`;
+
+	// Only get the middle section of the thumbnail
+	const thumbWidth = new URLSearchParams(thumbnail).get("w");
+	const croppedThumbnail = thumbnail
+			.replace("fit=max", "fit=crop")
+			.replace("q=80", "q=100")
+			.replace("crop=entropy", "crop=focalpoint") +
+		`&h=${thumbWidth * 0.8}&fp-x=.5&fp-y=.5&fp-z=3`;
+	changeDateTimeColorBasedOnBackground(croppedThumbnail)
 }
 
 /**
@@ -114,4 +123,40 @@ function getTime() {
  */
 function go(link) {
 	window.open(link, "_blank");
+}
+
+/**
+ * Decide whether to use a white or black text color depending on the color it is being displayed on. If there is white background,
+ * a black text should be used, and vice versa.
+ *
+ * @param red Red
+ * @param green Green
+ * @param blue Blue
+ * @returns {boolean} Use white
+ */
+function useWhite(red, green, blue) {
+	return (red * 0.299 + green * 0.587 + blue * 0.114) <= 125;
+}
+
+/**
+ * Change the text color of the date and the time based on the background behind it. The most dominant color will
+ * be extracted, and according to the W3C spec, a luminance will be returned which can be used to determine whether
+ * to use black or white text
+ *
+ * @param image Image to get most dominant color from
+ */
+function changeDateTimeColorBasedOnBackground(image) {
+	new TinyColorExtractor({src: image, colorCount: 5, quality: 10, tolerance: 5}, function (data) {
+		if (Array.isArray(data) && data.length > 1) {
+			const useWhite = useWhite(data[0][0], data[0][1], data[0][2]);
+			const textColor = useWhite ? "#FFFFFF" : "#000000";
+
+			byId("time").style.color = textColor;
+			byId("date").style.color = textColor;
+
+			byId("background-overlay").className = `radial-gradient-effect-${useWhite ? "black" : "white"}`;
+			byId("image-background-overlay").className = `radial-gradient-effect-${useWhite ? "black" : "white"}`;
+			byId("thumbnail-background-overlay").className = `radial-gradient-effect-${useWhite ? "black" : "white"}`;
+		}
+	});
 }
