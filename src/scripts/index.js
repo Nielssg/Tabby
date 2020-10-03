@@ -77,14 +77,17 @@ function applyWallpaper(image, link, thumbnail) {
 	byId("thumbnail-background-overlay").style.backgroundImage = `url(${thumbnail})`;
 	byId("image-background-overlay").style.backgroundImage = `url(${image})`;
 
-	// Only get the middle section of the thumbnail
-	const thumbWidth = new URLSearchParams(thumbnail).get("w");
-	const croppedThumbnail = thumbnail
-			.replace("fit=max", "fit=crop")
-			.replace("q=80", "q=100")
-			.replace("crop=entropy", "crop=focalpoint") +
-		`&h=${thumbWidth * 0.8}&fp-x=.5&fp-y=.5&fp-z=3`;
-	changeDateTimeColorBasedOnBackground(croppedThumbnail)
+	if (localStorage.getItem("automaticDateTimeTextColorEnabled")) {
+		// User enabled automatic date / time text color. For getting the
+		// primary color only get the middle section of the thumbnail
+		const thumbWidth = new URLSearchParams(thumbnail).get("w");
+		const croppedThumbnail = thumbnail
+				.replace("fit=max", "fit=crop")
+				.replace("q=80", "q=100")
+				.replace("crop=entropy", "crop=focalpoint") +
+			`&h=${thumbWidth * 0.8}&fp-x=.5&fp-y=.5&fp-z=3`;
+		changeDateTimeColorBasedOnBackground(croppedThumbnail)
+	}
 }
 
 /**
@@ -148,8 +151,7 @@ function useWhite(red, green, blue) {
 function changeDateTimeColorBasedOnBackground(image) {
 	new TinyColorExtractor({src: image, colorCount: 5, quality: 10, tolerance: 5}, function (data) {
 		if (Array.isArray(data) && data.length > 1) {
-			const useWhite = useWhite(data[0][0], data[0][1], data[0][2]);
-			const textColor = useWhite ? "#FFFFFF" : "#000000";
+			const textColor = useWhite(data[0][0], data[0][1], data[0][2]) ? "#FFFFFF" : "#000000";
 
 			byId("time").style.color = textColor;
 			byId("date").style.color = textColor;

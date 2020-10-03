@@ -231,3 +231,38 @@ p {
 .hidden {
 	display: none !important;
 }
+
+.checkbox {
+	background-size: 24px;
+	cursor: pointer;
+	height: 24px;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	width: 24px;
+	-webkit-background-size: 24px;
+	background-repeat: no-repeat;
+	background-image: url("../images/checkbox-unchecked.svg");
+}
+
+.checkbox.checked {
+	background-image: url("../images/checkbox-checked.svg");
+}
+
+.checkbox.unchecked {
+}
+
+#automatic-date-time-text-color-container {
+	display: flex;
+}
+
+#automatic-date-time-text-color-container > p {
+	width: fit-content;
+	margin-bottom: 0;
+	padding-bottom: 16px;
+}
+
+#automatic-date-time-text-color-container > .checkbox {
+	align-self: center;
+	margin-left: 16px;
+	padding-bottom: 16px;
+}
