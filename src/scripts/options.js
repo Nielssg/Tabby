@@ -1,9 +1,20 @@
 let automaticDateTimeTextColorEnabled = localStorage.getItem("automaticDateTimeTextColorEnabled") || false;
+const unsplashCollectionUrlRegex = /(?!\/collections\/)([0-9].*)(?:[0-9])/g;
 
 window.onload = () => {
 	const byId = id => document.getElementById(id);
 	byId("collection-id").value = localStorage.getItem("collectionId");
 	byId("api-key").value = localStorage.getItem("apiKey");
+
+	byId("collection-id").addEventListener("paste", event => {
+		const pastedContent = (event.clipboardData).getData("text");
+		const matchResults = pastedContent.match(unsplashCollectionUrlRegex);
+		event.preventDefault();
+
+		if (matchResults !== null && matchResults.length > 0) {
+			byId("collection-id").value = matchResults[0];
+		}
+	});
 
 	byId("get-started").addEventListener("click", () => {
 		localStorage.setItem("collectionId", byId("collection-id").value);
