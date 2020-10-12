@@ -3,6 +3,7 @@ const setValue = (key, value) => localStorage.setItem(key, value);
 const getValue = key => localStorage.getItem(key);
 const byId = id => document.getElementById(id);
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/photos/random?orientation=landscape";
+const unsplashCollectionUrlRegex = /(?!\/collections\/)([0-9].*)(?:[0-9])/g;
 
 window.onload = () => initialize();
 
@@ -32,6 +33,16 @@ function initialize() {
 				byId("setup-unsplash").style.display = "initial";
 			} else {
 				byId("setup-unsplash").style.display = "none";
+			}
+		});
+
+		byId("collection-id").addEventListener("paste", event => {
+			const pastedContent = (event.clipboardData).getData("text");
+			const matchResults = pastedContent.match(unsplashCollectionUrlRegex);
+			event.preventDefault();
+
+			if (matchResults !== null && matchResults.length > 0) {
+				byId("collection-id").value = matchResults[0];
 			}
 		});
 
