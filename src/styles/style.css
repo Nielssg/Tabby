@@ -48,7 +48,7 @@ body {
 	background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
 }
 
-#image-background-overlay, #thumbnail-background-overlay {
+#image-background-overlay, #thumbnail-background-overlay, #background-overlay {
 	background: no-repeat fixed center;
 	background-size: cover;
 }
@@ -61,7 +61,7 @@ body {
 	z-index: 101;
 }
 
-#image-background-overlay.blur {
+#background-overlay.blur, #image-background-overlay.blur {
 	filter: blur(3px);
 }
 

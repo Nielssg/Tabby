@@ -6,6 +6,10 @@ window.onload = () => {
 	byId("collection-id").value = localStorage.getItem("collectionId");
 	byId("api-key").value = localStorage.getItem("apiKey");
 
+	const thumbnailUrl = defaultCollection[parseInt(Math.random() * defaultCollection.length)].urls.thumb;
+	byId("background-overlay").style.backgroundImage = `url("${thumbnailUrl}")`;
+	byId("background-overlay").classList.toggle("blur");
+
 	byId("collection-id").addEventListener("paste", event => {
 		const pastedContent = (event.clipboardData).getData("text");
 		const matchResults = pastedContent.match(unsplashCollectionUrlRegex);
