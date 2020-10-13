@@ -22,6 +22,7 @@ function initialize() {
 		getTime();
 		getWallpaper();
 		byId("background-overlay").addEventListener("dblclick", () => skipImage());
+		byId("link").addEventListener("click", () => go(getValue("link")));
 	}
 }
 
@@ -73,7 +74,6 @@ function getWallpaper() {
  * @param thumbnail Thumbnail used for lazy loading
  */
 function applyWallpaper(image, link, thumbnail) {
-	byId("link").addEventListener("click", () => go(link));
 	byId("thumbnail-background-overlay").style.backgroundImage = `url(${thumbnail})`;
 	byId("image-background-overlay").style.backgroundImage = `url(${image})`;
 
