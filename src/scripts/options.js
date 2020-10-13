@@ -1,8 +1,8 @@
 let automaticDateTimeTextColorEnabled = localStorage.getItem("automaticDateTimeTextColorEnabled") || false;
 const unsplashCollectionUrlRegex = /(?!\/collections\/)([0-9].*)(?:[0-9])/g;
+const byId = id => document.getElementById(id);
 
 window.onload = () => {
-	const byId = id => document.getElementById(id);
 	byId("collection-id").value = localStorage.getItem("collectionId");
 	byId("api-key").value = localStorage.getItem("apiKey");
 

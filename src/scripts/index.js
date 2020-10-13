@@ -4,6 +4,7 @@ const getValue = key => localStorage.getItem(key);
 const byId = id => document.getElementById(id);
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/photos/random?orientation=landscape";
 const unsplashCollectionUrlRegex = /(?!\/collections\/)([0-9].*)(?:[0-9])/g;
+const isNullOrUndefined = value => value === null || value === undefined;
 
 window.onload = () => initialize();
 
@@ -11,7 +12,10 @@ window.onload = () => initialize();
  * Initialize the tab page
  */
 function initialize() {
-	if (getValue("collectionId") === null && getValue("apiKey") === null && getValue("useDefaultWallpapers") !== true.toString()) {
+	if (getValue("useDefaultWallpapers") !== true.toString() &&
+		(isNullOrUndefined(getValue("collectionId")) || isNullOrUndefined(getValue("apiKey")))) {
+		byId("collection-id").value = getValue("collectionId");
+		byId("api-key").value = getValue("apiKey");
 		byId("dialog").classList.toggle("hidden");
 		byId("get-started").addEventListener("click", () => {
 			setValue("collectionId", byId("collection-id").value);
@@ -73,7 +77,7 @@ function getWallpaper() {
 		applyWallpaper(getValue("image"), getValue("link"), getValue("thumbnail"));
 	} else {
 		//Retrieve new wallpaper
-		if (getValue("useDefaultWallpapers") === true.toString()) {
+		if (getValue("useDefaultWallpapers") === true.toString() && getValue("collectionId") === null && getValue("apiKey") === null) {
 			// User has not set-up the custom wallpaper flow, using default wallpapers
 			newWallpaper(defaultCollection[parseInt(Math.random() * defaultCollection.length)]);
 		} else {
