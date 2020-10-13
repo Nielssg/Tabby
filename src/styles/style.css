@@ -109,10 +109,19 @@ p {
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	width: 150px;
-	height: 150px;
+	padding: 16px;
 	background-color: transparent;
+	color: transparent;
 	cursor: pointer;
+	border-top-right-radius: 10px;
+	transition: all 0.2s;
+}
+
+#link:hover {
+	background-color: #4762E6;
+	background: -webkit-linear-gradient(45deg, #7233EC, #4762E6);
+	background: linear-gradient(45deg, #7233EC, #4762E6);
+	color: white;
 }
 
 #dialog-overlay {
@@ -150,6 +159,10 @@ p {
 	font-size: 24px;
 	font-weight: 500;
 	color: #404040;
+}
+
+#dialog h1 b {
+	color: #4762E6;
 }
 
 #dialog p {
@@ -190,6 +203,15 @@ p {
 
 .actions {
 	display: flex;
+}
+
+.smaller-text {
+	opacity: 0.90;
+	font-size: 13px !important;
+}
+
+.smaller-text > b {
+	color: #4762E6;
 }
 
 .button {

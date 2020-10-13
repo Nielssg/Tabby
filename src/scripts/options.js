@@ -6,7 +6,7 @@ window.onload = () => {
 	byId("collection-id").value = localStorage.getItem("collectionId");
 	byId("api-key").value = localStorage.getItem("apiKey");
 
-	const thumbnailUrl = defaultCollection[parseInt(Math.random() * defaultCollection.length)].urls.thumb;
+	const thumbnailUrl = defaultCollection[parseInt(Math.random() * defaultCollection.length)].urls.regular;
 	byId("background-overlay").style.backgroundImage = `url("${thumbnailUrl}")`;
 	byId("background-overlay").classList.toggle("blur");
 
