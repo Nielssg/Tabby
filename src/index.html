@@ -14,23 +14,42 @@
 	<p id="date"></p>
 </div>
 
-<div id="link"></div>
+<p id="link">Source on Unsplash</p>
 
 <div class="hidden" id="dialog-overlay"></div>
 <div class="hidden" id="dialog">
-	<h1>Welcome to Tabby</h1>
-	<p>Tabby is a minimalistic new tab page packed with time, date and a refreshing new wallpaper every minute. In order to work properly, we need to set up some things: a collection - which will be used to get images from and an API key to request them- and an Access API key which can be requested on <a href="https://unsplash.com/developers">Unsplash</a>.</p>
+	<h1>Welcome to <b>Tabby</b></h1>
+	<!-- <p>Tabby is a minimalistic new tab page packed with time, date and a refreshing new wallpaper every minute.</p>-->
+	<p>In order to work properly, we need to set up some things. You can either choose to use the default wallpapers, or
+		fill in some credentials to fetch wallpapers from your favorite collection!</p>
 
-	<label for="collection-id">Unsplash collection ID</label>
-	<input id="collection-id" placeholder="Collection ID" spellcheck="false" type="text">
-	<label for="api-key">Unsplash Access Key <a target="_blank" href="https://unsplash.com/oauth/applications">(get key)</a></label>
-	<input id="api-key" placeholder="API key" spellcheck="false" type="text">
+	<p class="smaller-text"><b>Tip:</b> You can double click the wallpaper to skip to the next one, and click in the lower left corner to go to the original Unsplash source.</p>
 
-	<div id="actions">
-		<button class="button" id="get-started">Get Started</button>
+	<div class="actions">
+		<button class="button" id="use-default-wallpaper">Let's get going</button>
+	</div>
+
+	<div class="actions">
+		<button class="button alternative" id="use-custom-wallpaper">Advanced setup</button>
+	</div>
+
+	<div id="setup-unsplash">
+		<p>We need to set-up two things: a collection - which will be used to get images from and an API key to request
+			them- and an Access API key which can be requested on <a href="https://unsplash.com/developers">Unsplash</a>.
+		</p>
+		<label for="collection-id">Unsplash collection ID</label>
+		<input id="collection-id" placeholder="Collection ID or URL" spellcheck="false" type="text">
+		<label for="api-key">Unsplash Access Key <a target="_blank" href="https://unsplash.com/oauth/applications">(get
+			key)</a></label>
+		<input id="api-key" placeholder="API key" spellcheck="false" type="text">
+
+		<div class="actions">
+			<button class="button" id="get-started">Get Started</button>
+		</div>
 	</div>
 </div>
 
+<script src="resources/wallpapers.js"></script>
 <script src="libraries/tinycolorextractor.js"></script>
 <script src="scripts/index.js"></script>
 </body>

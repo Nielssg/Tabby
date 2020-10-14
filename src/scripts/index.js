@@ -3,6 +3,8 @@ const setValue = (key, value) => localStorage.setItem(key, value);
 const getValue = key => localStorage.getItem(key);
 const byId = id => document.getElementById(id);
 const UNSPLASH_BASE_URL = "https://api.unsplash.com/photos/random?orientation=landscape";
+const unsplashCollectionUrlRegex = /(?!\/collections\/)([0-9].*)(?:[0-9])/g;
+const isNullOrUndefined = value => value === null || value === undefined;
 
 window.onload = () => initialize();
 
@@ -10,14 +12,46 @@ window.onload = () => initialize();
  * Initialize the tab page
  */
 function initialize() {
-	if (getValue("collectionId") === null && getValue("apiKey") === null) {
+	if (getValue("useDefaultWallpapers") !== true.toString() &&
+		(isNullOrUndefined(getValue("collectionId")) || isNullOrUndefined(getValue("apiKey")))) {
+		byId("collection-id").value = getValue("collectionId");
+		byId("api-key").value = getValue("apiKey");
 		byId("dialog").classList.toggle("hidden");
 		byId("get-started").addEventListener("click", () => {
 			setValue("collectionId", byId("collection-id").value);
 			setValue("apiKey", byId("api-key").value);
+			byId("image-background-overlay").classList.toggle("blur");
 			byId("dialog").classList.toggle("hidden");
 			initialize();
-		})
+		});
+
+		byId("use-default-wallpaper").addEventListener("click", () => {
+			setValue("useDefaultWallpapers", true.toString());
+			byId("image-background-overlay").classList.toggle("blur");
+			byId("dialog").classList.toggle("hidden");
+			initialize();
+		});
+
+		byId("use-custom-wallpaper").addEventListener("click", () => {
+			if (byId("setup-unsplash").style.display === "" || byId("setup-unsplash").style.display === "none") {
+				byId("setup-unsplash").style.display = "initial";
+			} else {
+				byId("setup-unsplash").style.display = "none";
+			}
+		});
+
+		byId("collection-id").addEventListener("paste", event => {
+			const pastedContent = (event.clipboardData).getData("text");
+			const matchResults = pastedContent.match(unsplashCollectionUrlRegex);
+			event.preventDefault();
+
+			if (matchResults !== null && matchResults.length > 0) {
+				byId("collection-id").value = matchResults[0];
+			}
+		});
+
+		newWallpaper(defaultCollection[parseInt(Math.random() * defaultCollection.length)]);
+		byId("image-background-overlay").classList.toggle("blur");
 	} else {
 		getTime();
 		getWallpaper();
@@ -43,28 +77,37 @@ function getWallpaper() {
 		applyWallpaper(getValue("image"), getValue("link"), getValue("thumbnail"));
 	} else {
 		//Retrieve new wallpaper
-		fetch(`${UNSPLASH_BASE_URL}&collections=${getValue("collectionId")}
+		if (getValue("useDefaultWallpapers") === true.toString() && getValue("collectionId") === null && getValue("apiKey") === null) {
+			// User has not set-up the custom wallpaper flow, using default wallpapers
+			newWallpaper(defaultCollection[parseInt(Math.random() * defaultCollection.length)]);
+		} else {
+			fetch(`${UNSPLASH_BASE_URL}&collections=${getValue("collectionId")}
 		&client_id=${getValue("apiKey")}&id=4Cjn0FDEud8`, {
-			method: "GET",
-		}).then(response => response.json()).then(result => {
-			if (!result.errors) {
-				let image = result.urls.raw;
-				let thumbnail = result.urls.thumb;
-				let link = result.links.html;
-				applyWallpaper(image, link, thumbnail);
-
-				//Save the url to localStorage
-				let expiryDate = new Date().getTime() + (72 * 1000);
-				setValue("unsplash", "set");
-				setValue("image", image);
-				setValue("thumbnail", thumbnail);
-				setValue("link", link);
-				setValue("expiryDate", expiryDate);
-			} else {
-				//TODO handle errors
-			}
-		})
+				method: "GET",
+			}).then(response => response.json()).then(result => {
+				if (!result.errors) {
+					newWallpaper(result);
+				} else {
+					//TODO handle errors
+				}
+			});
+		}
 	}
+}
+
+function newWallpaper(wallpaper) {
+	let image = wallpaper.urls.raw;
+	let thumbnail = wallpaper.urls.thumb;
+	let link = wallpaper.links.html;
+	applyWallpaper(image, link, thumbnail);
+
+	//Save the url to localStorage
+	let expiryDate = new Date().getTime() + (72 * 1000);
+	setValue("unsplash", "set");
+	setValue("image", image);
+	setValue("thumbnail", thumbnail);
+	setValue("link", link);
+	setValue("expiryDate", expiryDate);
 }
 
 /**
@@ -77,7 +120,7 @@ function applyWallpaper(image, link, thumbnail) {
 	byId("thumbnail-background-overlay").style.backgroundImage = `url(${thumbnail})`;
 	byId("image-background-overlay").style.backgroundImage = `url(${image})`;
 
-	if (localStorage.getItem("automaticDateTimeTextColorEnabled")) {
+	if (getValue("automaticDateTimeTextColorEnabled")) {
 		// User enabled automatic date / time text color. For getting the
 		// primary color only get the middle section of the thumbnail
 		const thumbWidth = new URLSearchParams(thumbnail).get("w");
@@ -102,11 +145,14 @@ function skipImage() {
  * Clear the cache, preserving the API key and collection ID
  */
 function clearCache() {
+	const useDefaultWallpapers = getValue("useDefaultWallpapers");
 	const apiKey = getValue("apiKey");
 	const collectionId = getValue("collectionId");
 	localStorage.clear();
-	setValue("apiKey", apiKey);
-	setValue("collectionId", collectionId);
+
+	setValue("useDefaultWallpapers", useDefaultWallpapers);
+	if (apiKey) setValue("apiKey", apiKey);
+	if (collectionId) setValue("collectionId", collectionId);
 }
 
 /**

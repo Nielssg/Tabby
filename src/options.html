@@ -5,14 +5,14 @@
 	<title>Options</title>
 </head>
 <body>
-<div id="background-overlay"></div>
+<div id="background-overlay" class="radial-gradient-effect-black"></div>
 <div id="dialog">
 	<div id="settings">
 		<h1>Settings</h1>
-		<p>All changes will be applied immediately after saving. In order to work properly, we need to set up some things: a collection - which will be used to get images from and an API key to request them- and an Access API key which can be requested on <a href="https://unsplash.com/developers">Unsplash</a>.</p>
+		<p>In order to use your own favorite collection of wallpapers from <a href="https://unsplash.com">Unsplash</a>, we need to set up some things: a collection - which will be used to get images from and an API key to request them- and an Access API key which can be requested on <a href="https://unsplash.com/developers">Unsplash</a>.</p>
 
 		<label for="collection-id">Unsplash collection ID or URL</label>
-		<input id="collection-id" placeholder="Collection ID" spellcheck="false" type="text">
+		<input id="collection-id" placeholder="Collection ID or URL" spellcheck="false" type="text">
 		<label for="api-key">Unsplash Access Key <a target="_blank" href="https://unsplash.com/oauth/applications">(get key)</a></label>
 		<input id="api-key" placeholder="API key" spellcheck="false" type="text">
 
@@ -22,7 +22,7 @@
 			<div id="automatic-date-time-text-color" class="checkbox"></div>
 		</div>
 
-		<div id="actions">
+		<div class="actions">
 			<button class="button" id="get-started">Save</button>
 		</div>
 	</div>
@@ -32,6 +32,7 @@
 	</div>
 </div>
 
+<script src="resources/wallpapers.js"></script>
 <script src="scripts/options.js"></script>
 </body>
 </html>
