@@ -30,6 +30,20 @@ tab,tab home,new tab,unsplash,clock,time,wallpaper
 
 ## Changelog
 
+#### V1.4
+* Added default wallpapers, which enables the use of Tabby for non-developers
+* Improved visual appearance of the settings screen
+* Fixed bug where skipping wallpapers and eventually clicking on the source will open a lot of tabs
+* Added ability to also paste a collection url instead of the id
+
+#### V1.3
+* Added option to automatically change text color based on background
+
+#### V1.2
+* Improved UX
+* Added new icons
+* Improved Firefox support
+
 #### V1.1
 * Added support for Firefox
 * Added new logo
